@@ -40,6 +40,10 @@ const deletePost = async (id) => {
 };
 
 
+const handleEdit =(item)=> setUpdateDataApi(item)
+
+
+
   return (
     <>
     <section className='flex justify-center items-center m-5' >
@@ -58,7 +62,7 @@ const deletePost = async (id) => {
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 justify-center items-center gap-6">
           {postData?.map((item) => (
             <div key={item?.id}>
-           <PostCard postData={item} handleDelete={()=> deletePost(item.id)}/>
+           <PostCard postData={item} handleDelete={()=> deletePost(item.id)} handleEdit={()=>handleEdit(item)}/>
             </div>
           ))}
             </div>

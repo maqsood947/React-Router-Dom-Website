@@ -7,27 +7,35 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
     body: "",
   });
 
+
+
   const handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setAddData(prev => ({ ...prev, [name]: value }));
   };
 
+
+
+
+  let isEmpty = Object.keys(updateDataApi).length === 0;
+
   useEffect(() => {
-    if (updateDataApi?.id) {  // Make sure id exists before filling
+    updateDataApi &&
       setAddData({
         title: updateDataApi.title || "",
         body: updateDataApi.body || "",
       });
-    }
   }, [updateDataApi]);
+
+
 
   const addPostData = async () => {
     try {
       const res = await postData(addData);
       if (res.status === 201) {
-        setData(prev => [res.data, ...prev]); // Add new post to top
-        setAddData({ title: "", body: "" });  // Clear form
+        setData(prev => [res.data, ...prev]); 
+        setAddData({ title: "", body: "" });  
       }
     } catch (error) {
       console.log("Error adding post:", error);
@@ -85,9 +93,9 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit" value={updateDataApi.id ? "Edit" : "Add"} className='bg-green-400'>
-          {updateDataApi.id ? "Edit Post" : "Add Post"}
-        </button>
+        <button type="submit" value={isEmpty ? "Add" : "Edit"}>
+        {isEmpty ? "Add" : "Edit"}
+      </button>
       </form>
     </div>
   );
