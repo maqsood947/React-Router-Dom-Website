@@ -8,6 +8,7 @@ function GitHub() {
   const [postData, setPostData] = useState([]);
   const [loader, setLoader] = useState(true);
   const [updateDataApi, setUpdateDataApi] = useState({});
+  const [openDialogue, setOpenDialogue] = useState(false);
 
   const getData = async () => {
     try {
@@ -40,22 +41,9 @@ function GitHub() {
 
   return (
     <>
-      <section className="flex justify-center items-center m-5">
-        {/* <Form
-          data={postData}
-          setData={setPostData}
-          updateDataApi={updateDataApi}
-          setUpdateDataApi={setUpdateDataApi}
-        /> */}
-
-
-
-        <dialog open>
-          <div className="h-20 w-20 bg-red-500">
-          hello this ia a dialogue
-          </div>
-        </dialog>
-      </section>
+      {/* <section className="flex justify-center items-center m-5">
+    
+      </section> */}
       <section className="flex justify-center items-center m-5">
         {loader ? (
           <div className="spinner-border" role="status">
@@ -75,6 +63,28 @@ function GitHub() {
           </div>
         )}
       </section>
+      <div className="flex items-center lg:order-2 justify-center">
+        <button
+          onClick={() => setOpenDialogue(true)}
+          className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">
+          Add Post{" "}
+        </button>
+      </div>
+      <dialog
+        open={openDialogue}
+        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vh] bg-red-600 rounded-lg p-4 backdrop:bg-black/50">
+        <button
+          className="absolute top-2 right-2 text-white"
+          onClick={() => setOpenDialogue(false)}>
+          ✕
+        </button>
+        <Form
+          data={postData}
+          setData={setPostData}
+          updateDataApi={updateDataApi}
+          setUpdateDataApi={setUpdateDataApi}
+        />
+      </dialog>
     </>
   );
 }

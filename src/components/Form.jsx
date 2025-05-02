@@ -62,7 +62,7 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
   };
 
   return (
-    <div className="h-20 bg-red-500 self-center">
+    <div className="w-[70vw] h-[70vh] bg-red-500 self-center">
       <form
         onSubmit={handleFormSubmit}
         className="bg-red-400 flex flex-col p-3 gap-2">
@@ -88,7 +88,7 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit" value={isEmpty ? "Add" : "Edit"}>
+        <button type="submit" value={isEmpty ? "Add" : "Edit"} className="bg-white">
           {isEmpty ? "Add" : "Edit"}
         </button>
       </form>
